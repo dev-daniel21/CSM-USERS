@@ -1,0 +1,9 @@
+spring:
+  profiles.active: H2
+  application.name: csm_users
+  config:
+    import:
+      - classpath:database.yml
+      - classpath:logging.yml
+
+server.port: 8310
