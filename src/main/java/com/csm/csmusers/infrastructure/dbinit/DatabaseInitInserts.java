@@ -20,10 +20,9 @@ public class DatabaseInitInserts implements CommandLineRunner {
 
         userJPARepository.save(
                     new User("9ea220bd-54ac-4633-a271-89e59c36e161", "user1", "xyz"));
+        userJPARepository.save(
+                    new User("3a24960d-a9ac-4ebb-a506-22120e8bc717", "user2", "xyz"));
 
-        User user = userJPARepository.findByUserLogin("user1");
-
-        System.out.println("Application started");
-        System.out.println("users in db: " + user.getUserLogin() + " " + user.getUserId());
+        System.out.println("users in db: " + userJPARepository.count());
     }
 }

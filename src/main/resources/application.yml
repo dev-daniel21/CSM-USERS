@@ -1,6 +1,6 @@
 spring:
   profiles.active: H2
-  application.name: csm_users
+  application.name: csm-users
   config:
     import:
       - classpath:database.yml

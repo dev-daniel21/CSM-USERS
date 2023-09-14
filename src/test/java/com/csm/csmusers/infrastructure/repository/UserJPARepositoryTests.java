@@ -27,12 +27,12 @@ class UserJPARepositoryTests {
         long count = userJPARepository.count();
 
         // when
-        userJPARepository.save(new User(UUID.randomUUID().toString(), "user2", "cvb"));
+        userJPARepository.save(new User(UUID.randomUUID().toString(), "userX", "cvb"));
 
         // then
         long countAgain = userJPARepository.count();
-        assertThat(count).isEqualTo(1);
-        assertThat(countAgain).isEqualTo(2);
+        assertThat(count).isEqualTo(2);
+        assertThat(countAgain).isEqualTo(3);
     }
 
     @Test
@@ -42,11 +42,11 @@ class UserJPARepositoryTests {
         long count = userJPARepository.count();
 
         // when
-        userJPARepository.save(new User(UUID.randomUUID().toString(), "user3", "xyz"));
+        userJPARepository.save(new User(UUID.randomUUID().toString(), "userY", "xyz"));
 
         // then
         long countAgain = userJPARepository.count();
-        assertThat(count).isEqualTo(2);
-        assertThat(countAgain).isEqualTo(3);
+        assertThat(count).isEqualTo(3);
+        assertThat(countAgain).isEqualTo(4);
     }
 }

@@ -21,13 +21,13 @@ class CsmUsersApplicationTests {
 	}
 
 	@Test
-	void should_find_one_user() {
+	void should_find_two_users() {
 		// given
 		// when
 	    long count = userJPARepository.count();
 
 		// then
-		assertThat(count).isEqualTo(1);
+		assertThat(count).isEqualTo(2);
 	}
 
 }
