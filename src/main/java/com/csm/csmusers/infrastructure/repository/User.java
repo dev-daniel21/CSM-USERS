@@ -13,7 +13,6 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @GenericGenerator(name = "uuid", strategy = "uuid4")
     @Column(name = "user_id")
     private String userId;
 
@@ -50,5 +49,9 @@ public class User implements Serializable {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
+    }
+
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
     }
 }

@@ -7,18 +7,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("users")
 @Slf4j
-class VerifyUsersEndpoint {
+class UsersEndpoint {
 
-    private final VerificationService verificationService;
+    private final UsersService verificationService;
 
-    VerifyUsersEndpoint(VerificationService verificationService) {
+    UsersEndpoint(UsersService verificationService) {
         this.verificationService = verificationService;
     }
-//    "http://localhost:8310/verify?userId=%s&userPassword=%s", userId, password);
 
-    @GetMapping("/verify")
+    @GetMapping("/auth")
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity<UserAuthenticationResponse> verifyUsersPassword(@RequestParam("userId") String userId,
                                                 @RequestParam("userPassword") String userPassword) {
@@ -35,9 +34,23 @@ class VerifyUsersEndpoint {
     }
 
     @PostMapping("/registerUser")
-    ResponseEntity<UserRegistrationResponse> registerNewUser(@RequestParam("userLogin") String userLogin,
-                                                             @RequestParam("userPassword") String userPassword) {
+    ResponseEntity<String> registerNewUser(@RequestParam("userLogin") String userLogin,
+                                                 @RequestParam("userPassword") String userPassword) {
         log.info("register user request received");
-        return ResponseEntity.ok().body(verificationService.registerUser(userLogin, userPassword));
+
+        return verificationService.registerUser(userLogin, userPassword);
+    }
+
+    @PutMapping("/updateUser")
+    void updateUser(@RequestParam("userLogin") String userLogin, @RequestBody UpdateUserRequest request) {
+        log.info("update user request received");
+        verificationService.updateUser(userLogin, request);
+    }
+
+    @DeleteMapping("/deleteUser")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void deleteUser(@RequestParam("userLogin") String userLogin) {
+        log.info("delete user request received");
+        verificationService.deleteUser(userLogin);
     }
 }
